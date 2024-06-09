@@ -50,6 +50,7 @@ func main() {
 
 	// If first transaction was not successful there is no point to continue with status chech request
 	if dep.Response.Code != "200" {
+		fmt.Println("Deposit request was not successful.")
 		return
 	}
 	c := time.Tick(15 * time.Second)
@@ -61,8 +62,12 @@ func main() {
 			fmt.Println(statusCheck.Response.Status)
 			break
 		}
+		// for card payments we have this error state
 		if statusCheck.Response.Status == "ERROR" {
-			log.Fatal("Error processing get request")
+			log.Fatal("Received Error - Order is declined due to a technical error, please inform our support team. final status.")
+		}
+		if statusCheck.Response.Status == "FILTERED" {
+			log.Fatal("Received FILTERED - Order is declined by fraud-prevention system.")
 		}
 	}
 }

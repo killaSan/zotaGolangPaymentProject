@@ -86,6 +86,7 @@ func (depositRequestData *Deposit) LoadData(filePath string) {
 	}
 
 	depositRequestData.Request.Signature = depositRequestData.HashSha256(os.Getenv(definitions.ENDPOINT_ID), os.Getenv(definitions.API_SECRET_KEY))
+	depositRequestData.Request.OrderCurrency = os.Getenv(definitions.CURRENCY)
 }
 
 func (depositRequestData *Deposit) HashSha256(endpointId string, merchantSecretKey string) string {

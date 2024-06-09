@@ -4,7 +4,7 @@ type ZotaDepositRequest struct {
 	MerchantOrderID     string `json:"merchantOrderID"`
 	MerchantOrderDesc   string `json:"merchantOrderDesc"`
 	OrderAmount         string `json:"orderAmount"`
-	OrderCurrency       string `json:"orderCurrency"`
+	OrderCurrency       string `json:"orderCurrency,omitempty"`
 	CustomerEmail       string `json:"customerEmail"`
 	CustomerFirstName   string `json:"customerFirstName"`
 	CustomerLastName    string `json:"customerLastName"`

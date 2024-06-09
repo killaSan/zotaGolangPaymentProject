@@ -3,7 +3,6 @@ package statusCheck
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -43,7 +42,6 @@ func (statusCheckRequestData *StatusCheck) SendRequest(dep deposit.Deposit) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Println(string(body))
 	statusCheckRequestData.Response.Deserialize(body)
 }
 

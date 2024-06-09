@@ -11,9 +11,13 @@ Test Deposit and Status Check for Online Payments
 
 Example:
 export MERCHANT_ID=bigMerchant
+
 export API_SECRET_KEY=apiSecret
+
 export CURRENCY=BGN
+
 export ENDPOINT_ID=123123
+
 export BASE_URL=api.zotapay-stage.com
 
 In case where some of the variables are not set, program is not run.
