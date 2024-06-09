@@ -14,6 +14,7 @@ import (
 	"zotaProblem/deposit"
 )
 
+// status Check structure - holds the http get request and response
 type StatusCheck struct {
 	Request  definitions.ZotaOrderStatusCheckRequest
 	Response definitions.ZotaOrderStatusCheckResponse
@@ -31,7 +32,6 @@ func (statusCheckRequestData *StatusCheck) SendRequest(dep deposit.Deposit) {
 	qs := "?merchantID=" + statusCheckRequestData.Request.MerchantID + "&merchantOrderID=" + statusCheckRequestData.Request.MerchantOrderID + "&orderID=" + statusCheckRequestData.Request.OrderID + "&timestamp=" + statusCheckRequestData.Request.Timestamp + "&signature=" + statusCheckRequestData.Request.Signature
 	var address string = "https://" + os.Getenv(definitions.BASE_URL) + "/api/v1/query/order-status/"
 	requestURL := address + qs
-	fmt.Println(requestURL)
 	resp, err := http.Get(requestURL)
 	//Handle Error
 	if err != nil {
@@ -45,7 +45,6 @@ func (statusCheckRequestData *StatusCheck) SendRequest(dep deposit.Deposit) {
 	}
 	fmt.Println(string(body))
 	statusCheckRequestData.Response.Deserialize(body)
-	fmt.Println(statusCheckRequestData.Response)
 }
 
 func (statusCheck StatusCheck) HashSha256(merchantId string, merchantSecretKey string) string {

@@ -2,8 +2,19 @@ package definitions
 
 import "encoding/json"
 
+/**
+*	Interface which will serializa and deserialize json data from and to a structure
+ */
 type packetUtil interface {
+	/**
+	* Serialize method will transform structure to a valid json
+	* used for http post requests
+	 */
 	Serialize() []byte
+
+	/**
+	* Deserialize method will take the json response from server and parse it to a structure
+	 */
 	Deserialize([]byte)
 }
 
@@ -39,6 +50,8 @@ func (statusCheckResponse *ZotaOrderStatusCheckResponse) Serialize() []byte {
 	return jsonStatusCheckResponse
 }
 
+// since we poll data every 15 seconds we will need an empty instance of
+// statusCheckResponse so that we can clear the previous data
 var zeroStatusResponse = &ZotaOrderStatusCheckResponse{}
 
 func (statusCheckResponse *ZotaOrderStatusCheckResponse) Deserialize(jsonStatusCheckResponse []byte) {

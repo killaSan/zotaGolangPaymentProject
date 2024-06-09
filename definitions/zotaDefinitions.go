@@ -73,6 +73,15 @@ type ZotaOrderStatusCheckResponse struct {
 	ZotaDataStatusCheckResponse `json:"data,omitempty"`
 }
 
+// sensitive information
+// these variables must be set before the application is run
+// example:
+// export MERCHANT_ID=bigMerchant
+// export API_SECRET_KEY=apiSecret
+// export CURRENCY=BGN
+// export ENDPOINT_ID=123123
+// export BASE_URL=api.zotapay-stage.com
+
 const (
 	MERCHANT_ID    = "MERCHANT_ID"
 	API_SECRET_KEY = "API_SECRET_KEY"
